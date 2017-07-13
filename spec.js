@@ -15,7 +15,7 @@ describe('angularjs homepage todo list', function() {
 	it('should have family pictures and count them', function () {
 		element(by.id('search-phrase')).sendKeys('family');
 		element(by.xpath('//*[@id="search-container-fancy"]/form/fieldset/button/img')).click();
-		expect(element.all(by.css('.mosaic-asset')).count()).toEqual(60);
+		expect(element.all(by.css('.mosaic-asset')).count()).toBeLessThanOrEqual(60);
 	});
 
 	it('go back and show puppies pictures', function () {

@@ -1,0 +1,17 @@
+1)Оптимизировать код
+2)запустить на нескольких браузерах
+3)Дописать еще Expected Conditions +
+4)Протестировать не ангулярный сайт
+5)Добавить 2 действия
+6)
+
+
+•	Select a system under test and document a scenario to automate; +
+•	Use Protractor API as much as possible (browser navigation, clicks, switchTo and etc.); +
+•	Use several locator strategies i.e. different types of locators (and select the most suitable in your case); +
+•	Experiment with Expected Conditions. +
+•	Use different settings in protractor configuration file. +
+•	Implement case of using Protractor on non-Angular page.
+•	Add configuration for running tests (protractor) on IE, Chrome, Firefox.
+•	Add at least 2 new Actions implementations (for example: 1 for mouse actions and 1 for keyboard).
+•	Add at least 2 implementation of JavaScript Executor usage (for example: implement element highlighter, JS Executor based clicker or element finder);
