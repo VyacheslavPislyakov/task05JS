@@ -1,0 +1,22 @@
+{
+  "name": "task05js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VyacheslavPislyakov/task05JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VyacheslavPislyakov/task05JS/issues"
+  },
+  "homepage": "https://github.com/VyacheslavPislyakov/task05JS#readme",
+  "dependencies": {
+    "protractor": "^5.1.2"
+  }
+}
