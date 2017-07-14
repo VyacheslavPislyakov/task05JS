@@ -1,40 +1,52 @@
 describe('angularjs homepage todo list', function() {
 
+	const URL = 'http://www.gettyimages.com/';
 	var findKittenLabel = element(by.xpath('//*[@id="gallery"]/section[2]/section[1]/section/ul/li[2]/h5'));
+	var title = 'Creative Images | Stock Photos, Illustrations, Vector Art, Photo Archives | Getty Images';
+	var creativeElement = element(by.xpath('//*[@id="site-header"]/div[2]/nav[1]/ul/li[1]/a'));
+	var searchButton = element(by.xpath('//*[@id="search-container-fancy"]/form/fieldset/button/img'));
+	var amountOfPictures = 60;
+	var theLogo = element(By.id('logo'));
+	var searchLine = element(by.id('search-phrase'));
+	var urlCreativePage = 'http://www.gettyimages.com/creative-images';
+	var TooBarElements = element.all(by.css('div.tabs > a'));
+	var firstActiveInfoTab = element(by.css('#tab1 > div > h3'));
+	var mosaicOfPictures = element.all(by.css('.mosaic-asset'));
+
 
 	beforeEach(() => {
-		browser.get('http://www.gettyimages.com/');
+		browser.get(URL);
 	});
 
 	describe('test', function() {
 		it('go to creative page', function() {
-			element(by.xpath('//*[@id="site-header"]/div[2]/nav[1]/ul/li[1]/a')).click();
-			expect(browser.getTitle()).toEqual('Creative Images | Stock Photos, Illustrations, Vector Art, Photo Archives | Getty Images');
+			creativeElement.click();
+			expect(browser.getTitle()).toEqual(title);
 		});
 
 		it('should have family pictures and count them', function() {
-			element(by.id('search-phrase')).sendKeys('family');
-			element(by.xpath('//*[@id="search-container-fancy"]/form/fieldset/button/img')).click(); //не отрабатывает клик
-
-			expect(element.all(by.css('.mosaic-asset')).count()).toBeLessThanOrEqual(60);
-			browser.sleep(3000);
+			searchLine.sendKeys('family');
+			browser.executeScript('arguments[0].click()', searchButton);
+			expect((mosaicOfPictures).count()).toBeLessThanOrEqual(amountOfPictures);
 		});
 
-		it('test executors', function() {
-			var el = element(By.id('logo'));
-			browser.executeScript("arguments[0].style.backgroundColor = '" + "yellow" + "'", el);
+		it('should highlight the logo', function() {
+			browser.executeScript("arguments[0].style.backgroundColor = '" + "red" + "'", theLogo);
 			browser.sleep(3000);
 		});
 
 		it('go back and show puppies pictures', function() {
-			// browser.navigate().back();
-			browser.get('http://www.gettyimages.com/creative-images');
-			var search = element(by.id('search-phrase')).sendKeys('puppies');
-			search.sendKeys(protractor.Key.ENTER).perform;
+			browser.get(urlCreativePage);
+			searchLine.sendKeys('puppies');
+			browser.actions().sendKeys(protractor.Key.ENTER).perform();
 			expect(findKittenLabel.getText()).toEqual('Related searches');
-			// element(by.xpath('//*[@id="search-container-fancy"]/form/fieldset/button/img')).click();
-
 		});
+
+		it('imitation moving of mouse ', function () {
+			browser.actions().mouseMove(TooBarElements.get(0)).click().perform();
+			expect(firstActiveInfoTab.isDisplayed()).toBeTruthy();
+		});
+
 	});
 
 });
